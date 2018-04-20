@@ -290,16 +290,11 @@ def bin_df(
     else:
         # (hopefully) the user specified everything
         fn = bin_col_func
-    print fn
     
     # the extra column for bin centers
     if bin_pos_func:
         fn[by_key] = bin_pos_func
-    
-    print fn, bin_pos_func
-    
-
-    
+        
     # the actual binning ############################
     try:
         di = np.digitize(np.asarray(x).flatten(), be, right=right)
@@ -343,7 +338,6 @@ def bin_df(
 
         # weighted center
         # extra steps to make sure index is one-dimensional!
-        print binned_by_key
         ix = binned[by_key]
         binned.set_index(binned_by_key, inplace=True)
         # try to get rid of unused labels in columns
