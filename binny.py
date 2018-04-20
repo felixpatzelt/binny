@@ -333,16 +333,13 @@ def bin_df(
     if bin_pos_func:
         # if we had several binning functions, binning has
         # added an additional level to columns!
-        if (
-                hasattr(bin_col_func, '__len__') 
-                and not is_string_like(bin_col_func)
-            ):
+        if (binned.columns.nlevels == 1):
+            binned_by_key = by_key
+        else:
             if is_string_like(by_key):
                 binned_by_key = (by_key,) + (bin_pos_func_name,)
             else:
                 binned_by_key = by_key + (bin_pos_func_name,)
-        else:
-            binned_by_key = by_key
 
         # weighted center
         # extra steps to make sure index is one-dimensional!
