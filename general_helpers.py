@@ -4,6 +4,11 @@ Helpers, maybe factor to separate package later.
 import numpy as np
 from collections import Mapping
 
+try:
+    from progress import getLogger
+except ImportError:
+    from logging import getLogger
+
 ##########################################################################
 # Numbers, units, extents, ...
 ##########################################################################
