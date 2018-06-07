@@ -24,7 +24,7 @@ def is_string_like(obj):
         return False
     return True
     
-def is_number_like(obj):
+def is_num_like(obj):
     """Return True if obj looks like a number or numerical array."""
     try:
         obj = obj + 1
