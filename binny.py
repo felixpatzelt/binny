@@ -92,8 +92,8 @@ def bin_edges(x, bins, lim=None, space='lin', right=False):
             xmin, xmax = get_limits(x, lim)
             x = x[(xmin < x) & (x < xmax)]
         l, u = parse_unit(space)
-        p_low  = 100 * (1 - l)
-        p_high = 100 * (l)
+        p_low  = 100 * (1 - l) - left * 10**-10
+        p_high = 100 * (l) + right * 10**-10
         assert p_high > 50, "Pass higher quantile as kwarg space!"
         bin_edges = np.percentile(
             x,
