@@ -10,19 +10,18 @@ from general_helpers import (
     getLogger
 )
 
-# replacement_map
-# getLogger
-
-
-# sometimes we want to use as string (e.g. from a preset)
-# to bin with a function that pandas doesn't know
+# sometimes we want to use a string to specify an aggregation function 
+# that pandas doesn't know
 def se(x):
     """Return standard error of x."""
     return np.std(x) / np.sqrt(len(x))
+    
 func_replacements = {
-    'se':            se, # standard error 
+    'se': se, # standard error 
 }
 
+
+# Helpers to specify bins
 def bin_edges(x, bins, lim=None, space='lin', right=False):
     """Return lin- or log-spaced bin edges. See: bin_df
     """
@@ -122,6 +121,7 @@ def bin_centers_from_edges(edges, keep_outer_edges=False):
         centers = np.r_[min(edges), centers, max(edges)]
     return centers
 
+# do the actual binning
 def bin_df(
         df, 
         bins             = 100,

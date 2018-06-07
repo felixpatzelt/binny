@@ -2,17 +2,31 @@
 Helpers, maybe factor to separate package later.
 """
 import numpy as np
-from matplotlib.cbook import is_numlike, is_string_like
 from collections import Mapping
-#from copy import deepcopy
-try:
-    from progress import getLogger
-except ImportError:
-    from logging import getLogger
 
 ##########################################################################
 # Numbers, units, extents, ...
 ##########################################################################
+
+# Some code duplication with scorr due to refactoring and changes in 
+# matplotlib.cbook. Maybe move to separate package
+
+def is_string_like(obj):
+    """Return true if obj behaves like a string"""
+    try:
+        obj + ''
+    except:
+        return False
+    return True
+    
+def is_number_like(obj):
+    """Return True if obj looks like a number or numerical array."""
+    try:
+        obj = obj + 1
+    except:
+        return False
+    # all cool
+    return True
 
 def is_number_like(obj):
     """Return True if obj looks like a SINGLE number."""
@@ -35,13 +49,6 @@ def is_hashable(obj):
         return True
     except:
         return False
-        
-#def re_sub(string, patterns ):
-#    """Apply a list of (regex) substitutions to string and return it."""
-#    for p, r in patterns:
-#        pc = re.compile(p)
-#        string = pc.sub(r, string)
-#    return string
 
 def replacement_map(x, replacements):
     """check replacemets for x or elements in x
