@@ -3,7 +3,7 @@ binny
 
 Bin one-dimensional data and calculate conditional expectation values. 
 
-The main function is `bin_df`, which accepts numpy-arrays or pandas Dataframes 
+The main function is ``bin_df``, which accepts numpy-arrays or pandas Dataframes 
 as inputs. Bins in linear, logarithmic, or quantile space are created for the 
 independent variable. The dependent variable is then aggregated in these bins.
 
