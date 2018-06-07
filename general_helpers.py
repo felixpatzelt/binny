@@ -64,7 +64,7 @@ def replacement_map(x, replacements):
         # print type(x), x, 'is map like'
         res = {
             k: replacement_map(v, replacements)
-            for k, v in x.iteritems()
+            for k, v in x.items()
         }
     elif (
                     hasattr(x, '__getitem__') # iterable
@@ -119,7 +119,7 @@ def _apply_limit_abs_unit(x, lim, unit):
     elif unit == 'mean':
         return lim * np.nanmean(np.abs(x))
     else:
-        raise ValueError, "Unknown unit %s"%unit
+        raise ValueError("Unknown unit %s"%unit)
         
 def _parse_limit(lim):
     """Returns limit_number, limit_unit. See get_limits."""
@@ -130,7 +130,7 @@ def _parse_limit(lim):
     elif is_number_like(lim):
         return (lim, None)
     else:
-        raise ValueError, "Can't parse limit: %s"%str(lim)
+        raise ValueError("Can't parse limit: %s"%str(lim))
 
 def get_limits(x, lim=None):
     """Return the range of values in x.
@@ -171,7 +171,7 @@ def get_limits(x, lim=None):
     # check for symmetry and units #######################################
     
     ## do we have both positive and negative values?
-    if not len(x): raise ValueError, "x is empty!"
+    if not len(x): raise ValueError("x is empty!")
     sign_min = np.sign(np.nanmin(x))
     sign_max = np.sign(np.nanmax(x))
 
@@ -230,6 +230,6 @@ def get_limits(x, lim=None):
             else:
                 lmax = 0
         else:
-            raise ValueError, "I don't understand the limit %s"%str(lim)
+            raise ValueError("I don't understand the limit %s"%str(lim))
     # done
     return lmin, lmax

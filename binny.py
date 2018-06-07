@@ -4,7 +4,7 @@ Binning functions
 
 import numpy as np
 import pandas as pd
-from general_helpers import (
+from .general_helpers import (
     get_limits, parse_unit, replacement_map, 
     is_number_like, is_string_like, is_map_like, is_hashable,
     getLogger
@@ -104,7 +104,7 @@ def bin_edges(x, bins, lim=None, space='lin', right=False):
         xmin, xmax = get_limits(x, lim)
         bin_edges  = np.linspace(xmin, xmax, bins + 1)
     else:
-        raise ValueError, "Space must be 'lin', 'log', or 'q'."
+        raise ValueError("Space must be 'lin', 'log', or 'q'.")
     
     # only return unique bins, particularly important for q
     bin_edges = np.unique(bin_edges)
@@ -228,7 +228,7 @@ def bin_df(
             # If by has a name (e.g. is Series), use it
             by_name = by.name
     else:
-        raise ValueError, "I don't understand the value of kwarg 'by'."
+        raise ValueError("I don't understand the value of kwarg 'by'.")
     
     # check on binning function for bin positions
     # to calc weighted bin-centers
