@@ -1,5 +1,5 @@
 """
-Helpers, maybe factor to separate package later.
+Helpers, maybe move some to separate package later.
 """
 import numpy as np
 from collections import Mapping
@@ -24,7 +24,7 @@ def is_string_like(obj):
         return False
     return True
     
-def is_num_like(obj):
+def is_numlike(obj):
     """Return True if obj looks like a number or numerical array."""
     try:
         obj = obj + 1
@@ -232,134 +232,4 @@ def get_limits(x, lim=None):
         else:
             raise ValueError, "I don't understand the limit %s"%str(lim)
     # done
-    return lmin, lmax 
-  
-#def date_bins(from_dt, periodicity, periods_or_to_dt=1, snap_month=True):
-#    """Return edges n-year or n-month bins.
-#    
-#    Parameters:
-#    ===========
-#    from_dt: str, datetime
-#        Start date
-#    periodicity: str
-#        E.g. '3m', '1y', ...
-#    periods_or_to_dt: int, str, datetime
-#        Number of periods (if int) or limit for the last date
-#        to be generated. E.g. 2, '2015-01', ...
-#    snap_month:
-#        If a stop date was passed with periods_or_to_dt,
-#        include last month if start day of month - stop day of month > 25.
-#        Otherwise, all dates will have the same day as from_dt, and days 
-#        are ignored.
-#    """
-#    import pandas as pd
-#
-#    # dates
-#    start = pd.to_datetime(from_dt).date()
-#    # running date [y, m, d]
-#    d = np.array([start.year, start.month, start.day], dtype=int)
-#    # date increment
-#    period = parse_unit(periodicity.lower())
-#    if period[-1] == 'y':
-#        dp = np.array([period[0],0,0], dtype=int)      
-#    elif period[-1] == 'm':
-#        dp = np.array([0,period[0],0], dtype=int)
-#    else:
-#        raise NotImplementedError, (
-#            "periodicity must be 'y' (year) or 'm' (month)!"
-#        )
-#    # number of periods
-#    if is_number_like(periods_or_to_dt):
-#        periods = int(periods_or_to_dt)
-#        stop = None
-#    else:
-#        stop = pd.to_datetime(periods_or_to_dt).date()
-#        #print start, stop, stop.day - start.day
-#        # get number of months
-#        months = (
-#            12 * (stop.year - start.year)
-#            + stop.month - start.month
-#        )
-#        if (
-#                snap_month 
-#                and ((stop.day - start.day) > 25)
-#            ):
-#            months += 1
-#        # convert months to periods
-#        if period[-1] == 'y':
-#            periods = months / 12 / period[0]
-#        elif period[-1] == 'm':
-#            periods = months / period[0]
-#
-#    # store dates
-#    edges = np.zeros([periods+1, 3], dtype=int)
-#    # fill in dates
-#    p = 0
-#    for p in range(periods+1):
-#        edges[p, :] = d[:]
-#        d += dp
-#        if d[1] > 12:
-#            d[0] += 1
-#            d[1] -= 12
-#    # return edges as dates
-#    return [pd.datetime(*e).date() for e in edges]
-
-#def timestamps_to_date(times):
-#    """Return list of dates corresponding to each timestamp.
-#    Much faster than DatetimeIndex.date!!!"""
-#    from pandas import DatetimeIndex
-#    from datetime import date
-#    di = DatetimeIndex(times)
-#    return [date(*i) for i in zip(di.year, di.month, di.day)]
-    
-##########################################################################
-# other
-##########################################################################  
-
-#def deepupdate(a, b, inplace=False, merge_lists=False):
-#    '''Return new dict from a deeply updated by b'''
-#    if not is_map_like(b):
-#        if merge_lists and hasattr(a, '__setitem__'):
-#            return a + b
-#        else:
-#            return b
-#    if not inplace:
-#        res = deepcopy(a)
-#    else:
-#        res = a
-#    for k, v in b.iteritems():
-#        if k in res:
-#            if is_map_like(res[k]):
-#                res[k] = deepupdate(res[k], v, merge_lists=merge_lists)
-#            elif merge_lists and hasattr(res[k], '__setitem__'):
-#                res[k] += v
-#            else:
-#                res[k] = deepcopy(v)
-#        else:
-#            res[k] = deepcopy(v)
-#
-#    if not inplace:
-#        return res
-    
-#def pairs(elements, exclude_permutation=True, exclude_identical=True):
-#    """Return all unique tuples (i,j) of elements i, j in l.
-#    
-#    Parameters
-#    ==========
-#    l: list
-#        List of elements
-#    exclude_permutation: bool [optional]
-#        Don't return both (i,j) and (j,i). Default: True
-#    exclude_identical: bool [optional]
-#        Don't return (i, j=i). Default: True.
-#
-#    """
-#    l = list(elements)
-#    ix = range(len(l))
-#    shift_j = int(exclude_permutation)
-#    return sum([[
-#        (l[i],l[j]) 
-#        for j in ix[shift_j * i:]
-#        if not (exclude_identical and i == j)
-#    ] for i in ix], [])
-#    
+    return lmin, lmax
