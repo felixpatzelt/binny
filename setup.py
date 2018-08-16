@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='binny',
-    version='0.5',
+    version='0.6',
     description=(
         'Tools for binning'
     ),
@@ -11,7 +11,7 @@ setup(
         values.
     """,
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Education',
         'Intended Audience :: Science/Research',
         'License :: OSI Approved :: MIT License',
@@ -28,7 +28,7 @@ setup(
     ],
     url='http://github.com/felixpatzelt/binny',
     download_url=(
-      'https://github.com/felixpatzelt/binny/archive/0.5.tar.gz'
+      'https://github.com/felixpatzelt/binny/archive/0.6.tar.gz'
     ),
     author='Felix Patzelt',
     author_email='felix@neuro.uni-bremen.de',
