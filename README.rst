@@ -28,6 +28,8 @@ Examples
     bin_df(y, by=x, bins=11, space='q').plot(marker='+')
 
 
+See also the `here <notebooks>`_.
+
 Installation
 ------------
 
