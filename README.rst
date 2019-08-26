@@ -28,7 +28,9 @@ Examples
     bin_df(y, by=x, bins=11, space='q').plot(marker='+')
 
 
-See also the `here <notebooks>`_.
+More examples can be found `in the notebooks directory <notebooks>`_. 
+Use `nbviewer <https://nbviewer.jupyter.org>`_ if GitHub fails to render.
+
 
 Installation
 ------------
