@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='binny',
-    version='0.6.1',
+    version='0.6.2',
     description=(
         'Tools for binning'
     ),

@@ -2,7 +2,10 @@
 Helpers, maybe move some to separate package later.
 """
 import numpy as np
-from collections import Mapping
+try:
+    from collections import Mapping
+except:
+    from collections.abc import Mapping
 
 try:
     from progress import getLogger
